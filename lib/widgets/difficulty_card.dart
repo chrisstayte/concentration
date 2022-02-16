@@ -2,6 +2,7 @@ import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/utilities/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 typedef DifficultyCallback(Difficulty difficulty);
 
@@ -48,7 +49,10 @@ class DifficultyCard extends StatelessWidget {
               width: 105,
               height: 80,
               child: GestureDetector(
-                onTap: () => {difficultyCallback(this.difficulty)},
+                onTap: () {
+                  difficultyCallback(this.difficulty);
+                  HapticFeedback.mediumImpact();
+                },
                 child: Card(
                   margin: EdgeInsets.zero,
                   color: _backgroundColor,

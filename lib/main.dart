@@ -1,5 +1,7 @@
 import 'package:concentration/providers/settings_provider.dart';
+import 'package:concentration/screens/game_screen.dart';
 import 'package:concentration/screens/home_screen.dart';
+import 'package:concentration/screens/new_game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,12 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Global.colors.lightIconColor,
         appBarTheme: AppBarTheme(backgroundColor: Global.colors.lightIconColor),
       ),
-      home: const Homescreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Homescreen(),
+        '/newGame': (context) => NewGameScreen(),
+        '/game': (context) => GameScreen(),
+      },
     );
   }
 }

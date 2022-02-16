@@ -1,6 +1,7 @@
 import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 typedef MapCallback(MapSize mapSize);
 
@@ -42,7 +43,10 @@ class MapCard extends StatelessWidget {
               width: 92,
               height: 200,
               child: GestureDetector(
-                onTap: () => (mapCallback(mapSize)),
+                onTap: () {
+                  mapCallback(mapSize);
+                  HapticFeedback.mediumImpact();
+                },
                 child: Card(
                   color: Global.colors.lightIconColorDarker,
                   margin: EdgeInsets.zero,

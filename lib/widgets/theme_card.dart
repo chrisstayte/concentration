@@ -38,7 +38,7 @@ class ThemeCard extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 gameThemeCallback(gameTheme);
-                HapticFeedback.selectionClick();
+                HapticFeedback.mediumImpact();
               },
               child: Container(
                 width: 105,
