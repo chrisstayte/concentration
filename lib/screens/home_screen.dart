@@ -1,3 +1,5 @@
+import 'package:concentration/global/global.dart';
+import 'package:concentration/screens/new_game_screen.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -19,15 +21,33 @@ class _HomescreenState extends State<Homescreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'concentration',
+                  'Concentration',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(color: Global.colors.darkIconColor),
+                ),
+                Text(
+                  'a game of memory',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5!
+                      .copyWith(color: Global.colors.darkIconColor),
                 ),
                 const SizedBox(
                   height: 150,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => NewGameScreen(),
+                      ),
+                    );
+                  },
                   child: Text('New Game'),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(

@@ -1,1 +1,1 @@
-enum difficulty { smoothBrain, brain, bigBrain }
+enum Difficulty { easy, intermediate, hard }
