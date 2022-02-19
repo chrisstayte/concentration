@@ -2,6 +2,7 @@ import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/enums/gametheme.dart';
 import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
+import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/screens/game_screen.dart';
 import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:concentration/widgets/main_button.dart';
@@ -9,6 +10,7 @@ import 'package:concentration/widgets/map_card.dart';
 import 'package:concentration/widgets/theme_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class NewGameScreen extends StatefulWidget {
   const NewGameScreen({Key? key}) : super(key: key);
@@ -18,10 +20,6 @@ class NewGameScreen extends StatefulWidget {
 }
 
 class _NewGameScreenState extends State<NewGameScreen> {
-  MapSize _mapSize = MapSize.fourxfour;
-  Difficulty _difficulty = Difficulty.easy;
-  GameTheme _gameTheme = GameTheme.concentration;
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -51,21 +49,24 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 children: [
                   MapCard(
                     mapSize: MapSize.fourxfour,
-                    selected: _mapSize == MapSize.fourxfour,
+                    selected: context.watch<SettingsProvider>().mapSize ==
+                        MapSize.fourxfour,
                     mapCallback: (mapSize) =>
-                        setState(() => _mapSize = mapSize),
+                        context.read<SettingsProvider>().setMapSize(mapSize),
                   ),
                   MapCard(
                     mapSize: MapSize.fivexsix,
-                    selected: _mapSize == MapSize.fivexsix,
+                    selected: context.watch<SettingsProvider>().mapSize ==
+                        MapSize.fivexsix,
                     mapCallback: (mapSize) =>
-                        setState(() => _mapSize = mapSize),
+                        context.read<SettingsProvider>().setMapSize(mapSize),
                   ),
                   MapCard(
                     mapSize: MapSize.sixxeight,
-                    selected: _mapSize == MapSize.sixxeight,
+                    selected: context.watch<SettingsProvider>().mapSize ==
+                        MapSize.sixxeight,
                     mapCallback: (mapSize) =>
-                        setState(() => _mapSize = mapSize),
+                        context.read<SettingsProvider>().setMapSize(mapSize),
                   ),
                 ],
               ),
@@ -91,24 +92,27 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 children: [
                   DifficultyCard(
                     difficulty: Difficulty.easy,
-                    selected: _difficulty == Difficulty.easy,
-                    difficultyCallback: (difficulty) => setState(
-                      () => _difficulty = difficulty,
-                    ),
+                    selected: context.watch<SettingsProvider>().difficulty ==
+                        Difficulty.easy,
+                    difficultyCallback: (difficulty) => context
+                        .read<SettingsProvider>()
+                        .setDifficulty(difficulty),
                   ),
                   DifficultyCard(
                     difficulty: Difficulty.intermediate,
-                    selected: _difficulty == Difficulty.intermediate,
-                    difficultyCallback: (difficulty) => setState(
-                      () => _difficulty = difficulty,
-                    ),
+                    selected: context.watch<SettingsProvider>().difficulty ==
+                        Difficulty.intermediate,
+                    difficultyCallback: (difficulty) => context
+                        .read<SettingsProvider>()
+                        .setDifficulty(difficulty),
                   ),
                   DifficultyCard(
                     difficulty: Difficulty.hard,
-                    selected: _difficulty == Difficulty.hard,
-                    difficultyCallback: (difficulty) => setState(
-                      () => _difficulty = difficulty,
-                    ),
+                    selected: context.watch<SettingsProvider>().difficulty ==
+                        Difficulty.hard,
+                    difficultyCallback: (difficulty) => context
+                        .read<SettingsProvider>()
+                        .setDifficulty(difficulty),
                   ),
                 ],
               ),
@@ -133,25 +137,28 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ThemeCard(
-                    selected: _gameTheme == GameTheme.concentration,
+                    selected: context.watch<SettingsProvider>().gameTheme ==
+                        GameTheme.concentration,
                     gameTheme: GameTheme.concentration,
-                    gameThemeCallback: (gameTheme) => setState(
-                      () => _gameTheme = gameTheme,
-                    ),
+                    gameThemeCallback: (gameTheme) => context
+                        .read<SettingsProvider>()
+                        .setGameTheme(gameTheme),
                   ),
                   ThemeCard(
-                    selected: _gameTheme == GameTheme.olive,
+                    selected: context.watch<SettingsProvider>().gameTheme ==
+                        GameTheme.olive,
                     gameTheme: GameTheme.olive,
-                    gameThemeCallback: (gameTheme) => setState(
-                      () => _gameTheme = gameTheme,
-                    ),
+                    gameThemeCallback: (gameTheme) => context
+                        .read<SettingsProvider>()
+                        .setGameTheme(gameTheme),
                   ),
                   ThemeCard(
-                    selected: _gameTheme == GameTheme.retro,
+                    selected: context.watch<SettingsProvider>().gameTheme ==
+                        GameTheme.retro,
                     gameTheme: GameTheme.retro,
-                    gameThemeCallback: (gameTheme) => setState(
-                      () => _gameTheme = gameTheme,
-                    ),
+                    gameThemeCallback: (gameTheme) => context
+                        .read<SettingsProvider>()
+                        .setGameTheme(gameTheme),
                   ),
                 ],
               ),
@@ -188,11 +195,9 @@ class _NewGameScreenState extends State<NewGameScreen> {
                   Expanded(
                     child: MainButton(
                       title: 'Play',
-                      onTap: () => Navigator.push(
+                      onTap: () => Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => GameScreen(),
-                        ),
+                        '/game',
                       ),
                     ),
                   ),
