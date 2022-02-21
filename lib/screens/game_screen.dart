@@ -24,7 +24,7 @@ class _GameScreenState extends State<GameScreen> {
   late var _rows;
   late var _columns;
 
-  List<bool> _showFrontSideList = [true, true];
+  List<bool> _showFrontSideList = [];
   bool _showFrontSide = true;
 
   @override
@@ -41,28 +41,31 @@ class _GameScreenState extends State<GameScreen> {
             ? 5
             : 6;
 
+    _showFrontSideList = List.filled(_rows * _columns, true);
+
     super.didChangeDependencies();
   }
 
   Widget _buildCard(Key key, String text, Color color) {
     final front = ValueKey(true) == key;
-    return Container(
-      height: 245,
-      width: 145,
-      key: key,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(5),
-        gradient: front
-            ? Global.gameThemeGradients
-                .gradients[context.read<SettingsProvider>().gameTheme]
-            : null,
-      ),
-      child: Center(
-        child: front
-            ? SvgPicture.asset(
-                'assets/images/${context.read<SettingsProvider>().gameTheme.name}.svg')
-            : Text(text),
+    return Expanded(
+      child: Container(
+        width: 54,
+        key: key,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(5),
+          gradient: front
+              ? Global.gameThemeGradients
+                  .gradients[context.read<SettingsProvider>().gameTheme]
+              : null,
+        ),
+        child: Center(
+          child: front
+              ? SvgPicture.asset(
+                  'assets/images/${context.read<SettingsProvider>().gameTheme.name}.svg')
+              : Text(text),
+        ),
       ),
     );
   }
@@ -83,6 +86,36 @@ class _GameScreenState extends State<GameScreen> {
         child: _showFrontSideList[index] ? _buildFront() : _buildBack(),
         switchInCurve: Curves.easeInBack,
         switchOutCurve: Curves.easeInBack.flipped,
+      ),
+    );
+  }
+
+  Widget _buildGrid() {
+    int i = 0;
+
+    List<Widget> rows = <Widget>[];
+
+    for (int row = 0; row < _rows; row++) {
+      List<Widget> items = <Widget>[];
+      for (int column = 0; column < _columns; column++) {
+        items.add(_buildFlipAnimation(i++));
+      }
+
+      rows.add(
+        Expanded(
+          flex: 1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: items,
+          ),
+        ),
+      );
+    }
+
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: rows,
       ),
     );
   }
@@ -115,14 +148,8 @@ class _GameScreenState extends State<GameScreen> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Row(
-                children: [
-                  _buildFlipAnimation(0),
-                  _buildFlipAnimation(1),
-                ],
-              ),
+            child: Column(children: [
+              _buildGrid(),
               SizedBox(
                 height: 10,
               ),
