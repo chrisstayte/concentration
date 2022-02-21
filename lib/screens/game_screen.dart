@@ -4,6 +4,7 @@ import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/screens/home_screen.dart';
+import 'package:concentration/widgets/game_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -149,7 +150,153 @@ class _GameScreenState extends State<GameScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: Column(children: [
-              _buildGrid(),
+              Expanded(
+                child: Container(
+                  color: Colors.green,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.red,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.red.shade100,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.red.shade200,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.red.shade300,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.blue,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.blue.shade100,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.blue.shade200,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.blue.shade300,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.green,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.green.shade100,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.green.shade200,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.green.shade300,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.yellow,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.yellow.shade100,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.yellow.shade200,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.yellow.shade300,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              // Expanded(
+              //   child: Container(
+              //     color: Colors.blue,
+              //     child: GridView.count(
+              //       childAspectRatio: .5,
+              //       shrinkWrap: true,
+              //       crossAxisCount: _columns,
+              //       mainAxisSpacing: 1,
+              //       crossAxisSpacing: 1,
+              //       children:
+              //           List.generate(_rows * _columns, (index) => GameCard()),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
