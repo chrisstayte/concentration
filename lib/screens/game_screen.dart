@@ -4,7 +4,6 @@ import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/screens/home_screen.dart';
-import 'package:concentration/widgets/game_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +24,9 @@ class _GameScreenState extends State<GameScreen> {
   late var _rows;
   late var _columns;
 
-  List<bool> _showFrontSideList = [];
-  bool _showFrontSide = true;
+  List<bool> _showTopOfCard = [];
+  List<bool> _solved = [];
+  List<int> _cardBottoms = [];
 
   @override
   void didChangeDependencies() {
@@ -42,81 +42,42 @@ class _GameScreenState extends State<GameScreen> {
             ? 5
             : 6;
 
-    _showFrontSideList = List.filled(_rows * _columns, true);
+    _showTopOfCard = List.filled(_rows * _columns, true);
+    _solved = List.filled(_rows * _columns, false);
+
+    int uniqueCardCount = (_columns * _rows / 2).round();
+
+    _cardBottoms = (List.generate(uniqueCardCount, (index) => index) +
+        List.generate(uniqueCardCount, (index) => index));
+
+    _cardBottoms.shuffle();
 
     super.didChangeDependencies();
   }
 
-  Widget _buildCard(Key key, String text, Color color) {
-    final front = ValueKey(true) == key;
-    return Expanded(
+  Widget _buildCard(bool showTop, Color? color, int index) {
+    String themeName = context.read<SettingsProvider>().gameTheme.name;
+    return Padding(
+      key: ValueKey(showTop),
+      padding: const EdgeInsets.all(1.0),
       child: Container(
-        width: 54,
-        key: key,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(5),
-          gradient: front
+          gradient: showTop
               ? Global.gameThemeGradients
                   .gradients[context.read<SettingsProvider>().gameTheme]
               : null,
         ),
         child: Center(
-          child: front
-              ? SvgPicture.asset(
-                  'assets/images/${context.read<SettingsProvider>().gameTheme.name}.svg')
-              : Text(text),
+          child: showTop
+              ? SvgPicture.asset('assets/images/$themeName.svg')
+              : SvgPicture.asset(
+                  'assets/images/$themeName/${_cardBottoms[index]}.svg',
+                  height: 24,
+                  width: 24,
+                ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildFront() => _buildCard(ValueKey(true), 'Front', Colors.red);
-
-  Widget _buildBack() =>
-      _buildCard(ValueKey(false), 'Back', Global.colors.darkIconColor);
-
-  Widget _buildFlipAnimation(int index) {
-    return GestureDetector(
-      onTap: () => setState(
-          () => _showFrontSideList[index] = !_showFrontSideList[index]),
-      child: AnimatedSwitcher(
-        layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
-        transitionBuilder: _transitionBuilder,
-        duration: Duration(milliseconds: 400),
-        child: _showFrontSideList[index] ? _buildFront() : _buildBack(),
-        switchInCurve: Curves.easeInBack,
-        switchOutCurve: Curves.easeInBack.flipped,
-      ),
-    );
-  }
-
-  Widget _buildGrid() {
-    int i = 0;
-
-    List<Widget> rows = <Widget>[];
-
-    for (int row = 0; row < _rows; row++) {
-      List<Widget> items = <Widget>[];
-      for (int column = 0; column < _columns; column++) {
-        items.add(_buildFlipAnimation(i++));
-      }
-
-      rows.add(
-        Expanded(
-          flex: 1,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: items,
-          ),
-        ),
-      );
-    }
-
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: rows,
       ),
     );
   }
@@ -127,7 +88,7 @@ class _GameScreenState extends State<GameScreen> {
       animation: rotateAnim,
       child: widget,
       builder: (context, widget) {
-        final isUnder = (ValueKey(_showFrontSide) != widget!.key);
+        final isUnder = widget!.key != ValueKey(false);
         var tilt = ((animation.value - 0.5).abs() - 0.5) * 0.003;
         tilt *= isUnder ? -1.0 : 1.0;
         final value =
@@ -141,6 +102,26 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
+  Widget _buildFlipAnimation(int index) {
+    bool showTopOfCard = _showTopOfCard[index];
+    return Expanded(
+      flex: 1,
+      child: GestureDetector(
+        onTap: () => setState(
+          () => _showTopOfCard[index] = !_showTopOfCard[index],
+        ),
+        child: AnimatedSwitcher(
+          layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
+          transitionBuilder: _transitionBuilder,
+          duration: const Duration(milliseconds: 250),
+          child: _buildCard(showTopOfCard, Colors.green, index),
+          switchInCurve: Curves.easeInBack,
+          switchOutCurve: Curves.easeInBack.flipped,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -150,153 +131,23 @@ class _GameScreenState extends State<GameScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: Column(children: [
+              //_buildFlipAnimation(0),
               Expanded(
-                child: Container(
-                  color: Colors.green,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.red,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.red.shade100,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.red.shade200,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.red.shade300,
-                              ),
-                            )
-                          ],
+                child: Column(
+                  children: List.generate(
+                    _rows,
+                    (index) => Expanded(
+                      child: Row(
+                        children: List.generate(
+                          _columns,
+                          (index2) =>
+                              _buildFlipAnimation(_columns * index + index2),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.blue,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.blue.shade100,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.blue.shade200,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.blue.shade300,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.green,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.green.shade100,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.green.shade200,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.green.shade300,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.yellow,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.yellow.shade100,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.yellow.shade200,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.yellow.shade300,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
-              // Expanded(
-              //   child: Container(
-              //     color: Colors.blue,
-              //     child: GridView.count(
-              //       childAspectRatio: .5,
-              //       shrinkWrap: true,
-              //       crossAxisCount: _columns,
-              //       mainAxisSpacing: 1,
-              //       crossAxisSpacing: 1,
-              //       children:
-              //           List.generate(_rows * _columns, (index) => GameCard()),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 10,
               ),
