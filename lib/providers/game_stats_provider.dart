@@ -50,6 +50,8 @@ class GameStatsProvider extends ChangeNotifier {
         print(e.toString());
       }
     }
+
+    notifyListeners();
   }
 
   Future<void> _saveGameStats() async {
@@ -65,7 +67,7 @@ class GameStatsProvider extends ChangeNotifier {
   }
 
   void addStat(GameStat stat) async {
-    _gameStats.add(stat);
+    _gameStats.insert(0, stat);
     notifyListeners();
     await _saveGameStats();
   }

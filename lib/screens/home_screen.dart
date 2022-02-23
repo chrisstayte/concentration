@@ -45,11 +45,9 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   MainButton(
                     title: 'New Game',
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => NewGameScreen(),
-                      ),
+                      '/newGame',
                     ),
                   ),
                   SizedBox(
@@ -57,11 +55,9 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   MainButton(
                     title: 'Stats',
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => StatsScreen(),
-                      ),
+                      '/stats',
                     ),
                   ),
                   SizedBox(
@@ -69,11 +65,9 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   MainButton(
                     title: 'Credits',
-                    onTap: () => Navigator.push(
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => NewGameScreen(),
-                      ),
+                      '/credits',
                     ),
                   ),
                 ],
