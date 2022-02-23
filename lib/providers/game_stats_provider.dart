@@ -63,4 +63,10 @@ class GameStatsProvider extends ChangeNotifier {
     notifyListeners();
     await _saveGameStats();
   }
+
+  void addStat(GameStat stat) async {
+    _gameStats.add(stat);
+    notifyListeners();
+    await _saveGameStats();
+  }
 }

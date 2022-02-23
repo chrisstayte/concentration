@@ -45,7 +45,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 height: 5,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MapCard(
                     mapSize: MapSize.fourxfour,
@@ -88,7 +88,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 height: 5,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   DifficultyCard(
                     difficulty: Difficulty.easy,
@@ -134,7 +134,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                 height: 5,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ThemeCard(
                     selected: context.watch<SettingsProvider>().gameTheme ==

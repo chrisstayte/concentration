@@ -49,10 +49,11 @@ class ThemeCard extends StatelessWidget {
                     ),
                     gradient: Global.gameThemeGradients.gradients[gameTheme]),
                 child: Center(
-                  child: SvgPicture.asset(
-                    'assets/images/${gameTheme.name}.svg',
-                    width: 64,
-                    height: 64,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.8,
+                    child: SvgPicture.asset(
+                      'assets/images/${gameTheme.name}.svg',
+                    ),
                   ),
                 ),
               ),

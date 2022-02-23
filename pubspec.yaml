@@ -31,3 +31,5 @@ flutter:
   assets:
     - assets/images/
     - assets/images/olive/
+    - assets/images/retro/
+    - assets/images/concentration/

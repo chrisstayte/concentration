@@ -1,9 +1,33 @@
+import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/enums/gametheme.dart';
+import 'package:concentration/enums/mapsize.dart';
+import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:flutter/material.dart';
 
 class Global {
   static final colors = _Colors();
   static final gameThemeGradients = _GameThemeGradients();
+  static final gameTimesInSeconds = _GameTimesInSeconds();
+}
+
+class _GameTimesInSeconds {
+  final Map<MapSize, Map<Difficulty, int>> times = {
+    MapSize.fourxfour: {
+      Difficulty.easy: 90,
+      Difficulty.intermediate: 60,
+      Difficulty.hard: 30,
+    },
+    MapSize.fivexsix: {
+      Difficulty.easy: 240,
+      Difficulty.intermediate: 180,
+      Difficulty.hard: 60,
+    },
+    MapSize.sixxeight: {
+      Difficulty.easy: 360,
+      Difficulty.intermediate: 240,
+      Difficulty.hard: 90
+    }
+  };
 }
 
 class _Colors {
