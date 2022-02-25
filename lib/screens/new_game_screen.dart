@@ -182,7 +182,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                           ),
                         ),
                         child: Icon(
-                          Icons.cancel_outlined,
+                          Icons.cancel_rounded,
                           size: 48,
                           color: Colors.white,
                         ),

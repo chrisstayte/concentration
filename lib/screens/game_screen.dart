@@ -72,6 +72,7 @@ class _GameScreenState extends State<GameScreen> {
 
     int seconds = Global.gameTimesInSeconds.times[_mapSize]![_difficulty]!;
     seconds = 1;
+    _solvedCount = uniqueCardCount;
     _timeLeft = Duration(seconds: seconds);
 
     _timer = Timer.periodic(
@@ -166,7 +167,7 @@ class _GameScreenState extends State<GameScreen> {
                                 },
                               );
                             },
-                            child: Card(
+                            child: const Card(
                               elevation: 4,
                               margin: EdgeInsets.zero,
                               color: Color(0XFFF25C54),
@@ -176,7 +177,7 @@ class _GameScreenState extends State<GameScreen> {
                                 ),
                               ),
                               child: Icon(
-                                Icons.cancel_outlined,
+                                Icons.cancel_rounded,
                                 size: 48,
                                 color: Colors.white,
                               ),

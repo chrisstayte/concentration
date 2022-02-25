@@ -21,7 +21,7 @@ class MainButton extends StatelessWidget {
           elevation: 4,
           margin: EdgeInsets.zero,
           color: Global.colors.darkIconColor,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(25.0),
             ),
@@ -29,7 +29,10 @@ class MainButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: TextStyle(color: Colors.white, fontSize: 38),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:concentration/global/global.dart';
 import 'package:flutter/material.dart';
 
@@ -9,17 +10,33 @@ class QuitGameDialog extends StatelessWidget {
     return Center(
       child: Container(
         width: 250,
-        height: 175,
+        height: 135,
         child: Stack(
           children: [
             Container(
               width: 250,
-              height: 150,
+              height: 105,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
                 color: Global.colors.lightIconColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Center(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: AutoSizeText(
+                      'Are you sure you want to quit?',
+                      minFontSize: 22,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Global.colors.darkIconColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ),
             ),
             Positioned(
