@@ -10,6 +10,8 @@ import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/screens/home_screen.dart';
 import 'package:concentration/utilities/extensions.dart';
 import 'package:concentration/widgets/difficulty_card.dart';
+import 'package:concentration/widgets/end_game_dialog.dart';
+import 'package:concentration/widgets/quit_game_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -69,7 +71,7 @@ class _GameScreenState extends State<GameScreen> {
     _cardBottoms.shuffle();
 
     int seconds = Global.gameTimesInSeconds.times[_mapSize]![_difficulty]!;
-
+    seconds = 1;
     _timeLeft = Duration(seconds: seconds);
 
     _timer = Timer.periodic(
@@ -123,100 +125,129 @@ class _GameScreenState extends State<GameScreen> {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 10.0),
-                      child: SizedBox(
-                        height: 55,
-                        child: GestureDetector(
-                          onTap: () => Navigator.popUntil(
-                            context,
-                            ModalRoute.withName('/'),
-                          ),
-                          child: Card(
-                            elevation: 4,
-                            margin: EdgeInsets.zero,
-                            color: Color(0XFFF25C54),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(5),
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.cancel_outlined,
-                              size: 48,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Container(
-                        height: 55,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          color: Color(0XFF323031),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '${_timeLeft.toMinutesSeconds()}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Container(
-                        height: 55,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                          color: Color(0XFF323031),
-                        ),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                _flips.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10.0),
+                        child: SizedBox(
+                          height: 55,
+                          child: GestureDetector(
+                            // onTap: () => Navigator.popUntil(
+                            //   context,
+                            //   ModalRoute.withName('/'),
+                            // ),
+                            onTap: () {
+                              showGeneralDialog(
+                                context: context,
+                                pageBuilder: (_, __, ___) {
+                                  return QuitGameDialog();
+                                },
+                                transitionBuilder: (_, anim, __, child) {
+                                  Tween<Offset> tween;
+                                  if (anim.status == AnimationStatus.reverse) {
+                                    tween = Tween(
+                                        begin: Offset(0, -1), end: Offset.zero);
+                                  } else {
+                                    tween = Tween(
+                                        begin: Offset(0, 1), end: Offset.zero);
+                                  }
+
+                                  return SlideTransition(
+                                    position: tween.animate(anim),
+                                    child: FadeTransition(
+                                      opacity: anim,
+                                      child: child,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Card(
+                              elevation: 4,
+                              margin: EdgeInsets.zero,
+                              color: Color(0XFFF25C54),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(5),
                                 ),
                               ),
-                              Text(
-                                'Flips',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
+                              child: Icon(
+                                Icons.cancel_outlined,
+                                size: 48,
+                                color: Colors.white,
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Container(
+                          height: 55,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            color: Color(0XFF323031),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${_timeLeft.toMinutesSeconds()}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 26,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Container(
+                          height: 55,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                            color: Color(0XFF323031),
+                          ),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  _flips.toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                Text(
+                                  'Flips',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ]),
           ),
@@ -352,16 +383,43 @@ class _GameScreenState extends State<GameScreen> {
     // Flips
     int flips = _flips;
 
+    // Correct
+    int correct = _solvedCount;
+
     GameStat stat = GameStat(
         win: win,
         difficulty: difficulty,
         mapSize: mapSize,
         gameStarted: gameStarted,
         gameDuration: gameDuration,
-        flips: flips);
+        flips: flips,
+        correct: correct);
 
     context.read<GameStatsProvider>().addStat(stat);
 
-    Navigator.popUntil(context, ModalRoute.withName('/'));
+    showGeneralDialog(
+      context: context,
+      pageBuilder: (_, __, ___) {
+        return EndGameDialog(stat: stat);
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: Offset(0, -1), end: Offset.zero);
+        } else {
+          tween = Tween(begin: Offset(0, 1), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
+
+    // Navigator.popUntil(context, ModalRoute.withName('/'));
   }
 }

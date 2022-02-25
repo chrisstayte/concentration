@@ -8,6 +8,7 @@ import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'global/global.dart';
@@ -35,37 +36,122 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Concentration',
-      debugShowMaterialGrid: false,
-      showSemanticsDebugger: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Global.colors.lightIconColor,
-        appBarTheme: AppBarTheme(
-          color: Global.colors.lightIconColor,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            //color: Color(0XFF536372),
-            color: Global.colors.lightIconColorDarker,
+        title: 'Concentration',
+        debugShowMaterialGrid: false,
+        showSemanticsDebugger: false,
+        theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: Global.colors.lightIconColor,
+
+          appBarTheme: AppBarTheme(
+            foregroundColor: Global.colors.darkIconColor,
+            color: Global.colors.lightIconColor,
+            elevation: 0,
+            toolbarTextStyle: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            iconTheme: IconThemeData(
+              //color: Color(0XFF536372),
+              color: Global.colors.lightIconColorDarker,
+            ),
+            actionsIconTheme: IconThemeData(
+              //color: Color(0XFF536372),
+              color: Global.colors.lightIconColorDarker,
+            ),
+            titleTextStyle: TextStyle(
+              color: Global.colors.darkIconColor,
+              fontSize: 26,
+            ),
           ),
-          actionsIconTheme: IconThemeData(
-            //color: Color(0XFF536372),
-            color: Global.colors.lightIconColorDarker,
+
+          /// this was done to override the license page content, it's on a card
+          cardColor: Global.colors.lightIconColor,
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Global.colors.lightIconColorDarker,
+            ),
           ),
-          titleTextStyle: TextStyle(
-            color: Global.colors.darkIconColor,
-            fontSize: 26,
+          textTheme: TextTheme(
+            subtitle1: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            subtitle2: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline1: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline2: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline3: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline4: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline5: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            headline6: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            bodyText1: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            bodyText2: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
+            overline: TextStyle(
+              color: Global.colors.darkIconColor,
+            ),
           ),
+          listTileTheme: Theme.of(context).listTileTheme.copyWith(
+                iconColor: Global.colors.lightIconColorDarker,
+              ),
         ),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const Homescreen(),
-        '/newGame': (context) => NewGameScreen(),
-        '/game': (context) => GameScreen(),
-        '/stats': (context) => StatsScreen(),
-        '/credits': (context) => CreditsScreen(),
-      },
-    );
+        initialRoute: '/',
+        // routes: {
+        //   '/': (context) => const Homescreen(),
+        //   '/newGame': (context) => NewGameScreen(),
+        //   '/game': (context) => GameScreen(),
+        //   '/stats': (context) => StatsScreen(),
+        //   '/credits': (context) => CreditsScreen(),
+        // },
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return PageTransition(
+                child: Homescreen(),
+                type: PageTransitionType.bottomToTop,
+              );
+              break;
+            case '/newGame':
+              return PageTransition(
+                child: NewGameScreen(),
+                type: PageTransitionType.rightToLeftWithFade,
+              );
+              break;
+            case '/game':
+              return PageTransition(
+                child: GameScreen(),
+                type: PageTransitionType.rightToLeft,
+              );
+              break;
+            case '/stats':
+              return PageTransition(
+                child: StatsScreen(),
+                childCurrent: this,
+                type: PageTransitionType.rightToLeft,
+              );
+              break;
+            case '/credits':
+              return PageTransition(
+                  child: CreditsScreen(),
+                  type: PageTransitionType.rightToLeftWithFade);
+              break;
+            default:
+              return null;
+          }
+        });
   }
 }

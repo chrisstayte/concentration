@@ -1,5 +1,7 @@
+import 'package:concentration/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CreditsScreen extends StatefulWidget {
   const CreditsScreen({Key? key}) : super(key: key);
@@ -51,14 +53,38 @@ class _CreditsScreenState extends State<CreditsScreen> {
           ListTile(
             title: Text('Email Me'),
             trailing: Text('concentration@chrisstayte.com'),
+            onTap: () async {
+              final Uri params = Uri(
+                scheme: 'mailto',
+                path: 'countdowns@chrisstayte.com',
+                query:
+                    'subject=App Feedback&body=\n\n\nApp Version ${_packageInfo.version}', //add subject and body here
+              );
+
+              final String url = params.toString();
+              if (await canLaunch(url)) {
+                await launch(url);
+              }
+            },
           ),
           ListTile(
             title: Text('Repo'),
             trailing: Text('github.com/ChrisStayte/Concentration'),
+            onTap: () async {
+              final Uri params = Uri(
+                  scheme: 'https',
+                  path: 'www.github.com/ChrisStayte/Concentration');
+
+              final String url = params.toString();
+              if (await canLaunch(url)) {
+                await launch(url);
+              }
+            },
           ),
-          AboutListTile(
-            child: const Text('View Licenses'),
-            icon: Icon(Icons.info),
+          ListTile(
+            title: const Text('View Licenses'),
+            trailing: Icon(Icons.description),
+            onTap: () => showLicensePage(context: context),
           ),
         ],
       ),
