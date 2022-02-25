@@ -1,8 +1,11 @@
 import 'package:concentration/global/global.dart';
+import 'package:concentration/models/game_stat.dart';
+import 'package:concentration/providers/game_stats_provider.dart';
 import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
 import 'package:concentration/widgets/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -69,6 +72,9 @@ class _HomescreenState extends State<Homescreen> {
                       context,
                       '/credits',
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                 ],
               ),

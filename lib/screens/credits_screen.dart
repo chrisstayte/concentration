@@ -56,9 +56,9 @@ class _CreditsScreenState extends State<CreditsScreen> {
             onTap: () async {
               final Uri params = Uri(
                 scheme: 'mailto',
-                path: 'countdowns@chrisstayte.com',
+                path: 'concentration@chrisstayte.com',
                 query:
-                    'subject=App Feedback&body=\n\n\nApp Version ${_packageInfo.version}', //add subject and body here
+                    'subject=App Feedback (${_packageInfo.version})', //add subject and body here
               );
 
               final String url = params.toString();

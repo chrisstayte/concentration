@@ -28,7 +28,7 @@ class EndGameDialog extends StatelessWidget {
                 color: Global.colors.lightIconColor,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Material(
                   color: Colors.transparent,
                   child: Column(
@@ -55,61 +55,82 @@ class EndGameDialog extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Time Used',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Text(
                             stat.gameDuration.toMinutesSeconds(),
-                            style: TextStyle(fontSize: 20),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Flips',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Text(
                             stat.flips.toString(),
-                            style: TextStyle(fontSize: 20),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Matches',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Text(
                             stat.correct.toString(),
-                            style: TextStyle(fontSize: 20),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Difficulty',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Row(
                             children: [
-                              Icon(Icons.star),
+                              const Icon(Icons.star),
                               Icon(stat.difficulty != Difficulty.easy
                                   ? Icons.star
                                   : Icons.star_outline),
@@ -136,14 +157,16 @@ class EndGameDialog extends StatelessWidget {
                 child: Container(
                   width: 75,
                   height: 50,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
-                    color: Colors.red,
+                    // color: Colors.red,
+                    color: Global.colors.lightIconColorDarker,
                   ),
                   child: const Icon(
-                    Icons.cancel_rounded,
+                    // Icons.cancel_rounded,
+                    Icons.home,
                     color: Colors.white,
                     size: 38,
                   ),

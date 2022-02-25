@@ -72,7 +72,6 @@ class _GameScreenState extends State<GameScreen> {
 
     int seconds = Global.gameTimesInSeconds.times[_mapSize]![_difficulty]!;
     seconds = 1;
-    _solvedCount = uniqueCardCount;
     _timeLeft = Duration(seconds: seconds);
 
     _timer = Timer.periodic(

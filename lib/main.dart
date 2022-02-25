@@ -22,6 +22,7 @@ void main() {
         ),
         ChangeNotifierProvider<GameStatsProvider>(
           create: (_) => GameStatsProvider(),
+          lazy: false,
         )
       ],
       child: const MyApp(),
