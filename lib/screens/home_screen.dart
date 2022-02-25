@@ -5,6 +5,7 @@ import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
 import 'package:concentration/widgets/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
@@ -47,32 +48,38 @@ class _HomescreenState extends State<Homescreen> {
                     height: 127,
                   ),
                   MainButton(
-                    title: 'New Game',
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      '/newGame',
-                    ),
-                  ),
+                      title: 'New Game',
+                      onTap: () {
+                        HapticFeedback.mediumImpact();
+                        Navigator.pushNamed(
+                          context,
+                          '/newGame',
+                        );
+                      }),
                   SizedBox(
                     height: 20,
                   ),
                   MainButton(
-                    title: 'Stats',
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      '/stats',
-                    ),
-                  ),
+                      title: 'Stats',
+                      onTap: () {
+                        HapticFeedback.mediumImpact();
+                        Navigator.pushNamed(
+                          context,
+                          '/stats',
+                        );
+                      }),
                   SizedBox(
                     height: 20,
                   ),
                   MainButton(
-                    title: 'Credits',
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      '/credits',
-                    ),
-                  ),
+                      title: 'Credits',
+                      onTap: () {
+                        HapticFeedback.mediumImpact();
+                        Navigator.pushNamed(
+                          context,
+                          '/credits',
+                        );
+                      }),
                   SizedBox(
                     height: 20,
                   ),

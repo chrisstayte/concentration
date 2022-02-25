@@ -71,7 +71,7 @@ class _GameScreenState extends State<GameScreen> {
     _cardBottoms.shuffle();
 
     int seconds = Global.gameTimesInSeconds.times[_mapSize]![_difficulty]!;
-    seconds = 1;
+
     _timeLeft = Duration(seconds: seconds);
 
     _timer = Timer.periodic(
