@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
+import 'package:concentration/enums/difficulty.dart';
+import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/models/game_stat.dart';
+import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -70,5 +74,24 @@ class GameStatsProvider extends ChangeNotifier {
     _gameStats.insert(0, stat);
     notifyListeners();
     await _saveGameStats();
+  }
+
+  void _fakeStatsForScreenShots() {
+    List<int> correct = [1, 2, 3];
+
+    for (int i = 0; i < 25; i++) {
+      // GameStat stat = GameStat(
+      //   correct: 4,
+      //   flips: Random.nextInt(35) + 20,
+      //   win: true,
+      //   mapSize: MapSize.fivexsix,
+      //   difficulty: Difficulty.intermediate,
+      //   gameDuration: Duration(seconds: 87),
+      //   gameStarted: DateTime.now(),
+      // );
+      // _gameStats.add(stat);
+    }
+
+    notifyListeners();
   }
 }

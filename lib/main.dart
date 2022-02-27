@@ -1,4 +1,3 @@
-import 'package:concentration/models/game_stat.dart';
 import 'package:concentration/providers/game_stats_provider.dart';
 import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/screens/credits_screen.dart';
@@ -7,7 +6,6 @@ import 'package:concentration/screens/home_screen.dart';
 import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -122,7 +120,7 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/':
               return PageTransition(
-                child: Homescreen(),
+                child: HomeScreen(),
                 type: PageTransitionType.bottomToTop,
               );
               break;

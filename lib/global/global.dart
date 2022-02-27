@@ -1,8 +1,9 @@
 import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/enums/gametheme.dart';
 import 'package:concentration/enums/mapsize.dart';
-import 'package:concentration/widgets/difficulty_card.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show Alignment, Color, Gradient, HSLColor, LinearGradient;
+import 'package:flutter/widgets.dart';
 
 class Global {
   static final colors = _Colors();
@@ -45,13 +46,12 @@ class _GameThemeGradients {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        Color(0XFFFF1959),
-        Color(0XFFFDBF03),
+        Color(0XFFFF9999),
+        Color(0XFFBC1B6F),
       ],
     ),
-    GameTheme.olive: const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
+    GameTheme.olive: const RadialGradient(
+      radius: 1,
       colors: [
         Color(0XFFD12229),
         Color(0XFFF68A1E),
