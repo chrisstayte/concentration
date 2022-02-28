@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         title: 'Concentration',
         debugShowMaterialGrid: false,
         showSemanticsDebugger: false,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: Global.colors.lightIconColor,
 
@@ -145,8 +146,9 @@ class MyApp extends StatelessWidget {
               break;
             case '/credits':
               return PageTransition(
-                  child: CreditsScreen(),
-                  type: PageTransitionType.rightToLeftWithFade);
+                child: CreditsScreen(),
+                type: PageTransitionType.rightToLeft,
+              );
               break;
             default:
               return null;

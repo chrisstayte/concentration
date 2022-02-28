@@ -50,8 +50,9 @@ class _GameThemeGradients {
         Color(0XFFBC1B6F),
       ],
     ),
-    GameTheme.olive: const RadialGradient(
-      radius: 1,
+    GameTheme.olive: const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
       colors: [
         Color(0XFFD12229),
         Color(0XFFF68A1E),

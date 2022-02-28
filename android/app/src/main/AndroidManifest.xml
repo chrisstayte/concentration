@@ -3,7 +3,7 @@
    <application
         android:label="concentration"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/concentration">
         <activity
             android:name=".MainActivity"
             android:exported="true"

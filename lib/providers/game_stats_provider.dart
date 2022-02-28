@@ -18,6 +18,8 @@ class GameStatsProvider extends ChangeNotifier {
 
   GameStatsProvider() {
     _loadGameStats();
+
+    //_fakeStatsForScreenShots();
   }
 
   Future<String> get _localPath async {
@@ -77,19 +79,17 @@ class GameStatsProvider extends ChangeNotifier {
   }
 
   void _fakeStatsForScreenShots() {
-    List<int> correct = [1, 2, 3];
-
     for (int i = 0; i < 25; i++) {
-      // GameStat stat = GameStat(
-      //   correct: 4,
-      //   flips: Random.nextInt(35) + 20,
-      //   win: true,
-      //   mapSize: MapSize.fivexsix,
-      //   difficulty: Difficulty.intermediate,
-      //   gameDuration: Duration(seconds: 87),
-      //   gameStarted: DateTime.now(),
-      // );
-      // _gameStats.add(stat);
+      GameStat stat = GameStat(
+        correct: 4,
+        flips: 48 + i,
+        win: i.isEven,
+        mapSize: i.isEven ? MapSize.fivexsix : MapSize.fourxfour,
+        difficulty: Difficulty.intermediate,
+        gameDuration: Duration(seconds: 87 + i),
+        gameStarted: DateTime.now(),
+      );
+      _gameStats.add(stat);
     }
 
     notifyListeners();

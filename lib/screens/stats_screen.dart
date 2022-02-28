@@ -18,14 +18,14 @@ class StatsScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(0.0),
         child: Column(children: [
           Row(
             children: const [
               Expanded(
                 flex: 1,
                 child: Center(
-                    child: Text('Win/Lose',
+                    child: Text('Win',
                         style: TextStyle(fontWeight: FontWeight.bold))),
               ),
               Expanded(
@@ -44,7 +44,14 @@ class StatsScreen extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Center(
-                    child: Text('Time Elapsed',
+                    child: Text('Time',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13))),
+              ),
+              Expanded(
+                flex: 1,
+                child: Center(
+                    child: Text('Flips',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 13))),
               ),
@@ -122,6 +129,18 @@ class StatsScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               stat.gameDuration.toMinutesSeconds(),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Text(
+                              stat.flips.toString(),
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
