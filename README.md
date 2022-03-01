@@ -5,7 +5,7 @@ Card memory is a game where you have to click on a card to see what image is und
 
 iOS - https://apps.apple.com/us/app/concentration-game-of-memory/id1611268851
 
-android - 
+android - https://play.google.com/store/apps/details?id=com.chrisstayte.concentration
 
 ## **User Stories**
 - [X] User can see a grid with n x n cards (`n` is an integer). All the cards are faced down initially (`hidden` state)
