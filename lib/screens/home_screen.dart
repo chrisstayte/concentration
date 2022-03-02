@@ -4,6 +4,7 @@ import 'package:concentration/providers/game_stats_provider.dart';
 import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
 import 'package:concentration/widgets/main_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -59,15 +60,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  MainButton(
-                      title: 'Stats',
-                      onTap: () {
-                        HapticFeedback.mediumImpact();
-                        Navigator.pushNamed(
-                          context,
-                          '/stats',
-                        );
-                      }),
+                  Visibility(
+                    visible: !kIsWeb,
+                    child: MainButton(
+                        title: 'Stats',
+                        onTap: () {
+                          HapticFeedback.mediumImpact();
+                          Navigator.pushNamed(
+                            context,
+                            '/stats',
+                          );
+                        }),
+                  ),
                   SizedBox(
                     height: 20,
                   ),

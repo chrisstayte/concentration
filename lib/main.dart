@@ -5,6 +5,7 @@ import 'package:concentration/screens/game_screen.dart';
 import 'package:concentration/screens/home_screen.dart';
 import 'package:concentration/screens/new_game_screen.dart';
 import 'package:concentration/screens/stats_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ void main() {
         ),
         ChangeNotifierProvider<GameStatsProvider>(
           create: (_) => GameStatsProvider(),
-          lazy: false,
+          lazy: kIsWeb,
         )
       ],
       child: const MyApp(),
