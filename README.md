@@ -7,7 +7,7 @@ web - https://chrisstayte.app/Concentration
 
 iOS - https://apps.apple.com/us/app/concentration-game-of-memory/id1611268851
 
-android - https://play.google.com/store/apps/details?id=com.chrisstayte.concentration
+<a href='https://play.google.com/store/apps/details?id=com.chrisstayte.concentration&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="width: 290px;"  alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
 ## **User Stories**
 - [X] User can see a grid with n x n cards (`n` is an integer). All the cards are faced down initially (`hidden` state)
