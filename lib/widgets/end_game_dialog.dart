@@ -1,7 +1,6 @@
 import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/models/game_stat.dart';
-import 'package:concentration/screens/game_screen.dart';
 import 'package:concentration/utilities/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class EndGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 250,
         height: 375,
         child: Stack(
@@ -22,7 +21,7 @@ class EndGameDialog extends StatelessWidget {
               width: 250,
               height: 350,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(10),
                 ),
                 color: Global.colors.lightIconColor,
@@ -44,12 +43,12 @@ class EndGameDialog extends StatelessWidget {
                       Text(
                         stat.win ? 'You Win' : 'You Lose',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Row(

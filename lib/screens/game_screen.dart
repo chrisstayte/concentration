@@ -1,15 +1,12 @@
 import 'dart:async';
 
 import 'package:concentration/enums/difficulty.dart';
-import 'package:concentration/enums/gametheme.dart';
 import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/models/game_stat.dart';
 import 'package:concentration/providers/game_stats_provider.dart';
 import 'package:concentration/providers/settings_provider.dart';
-import 'package:concentration/screens/home_screen.dart';
 import 'package:concentration/utilities/extensions.dart';
-import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:concentration/widgets/end_game_dialog.dart';
 import 'package:concentration/widgets/quit_game_dialog.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +119,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -132,7 +129,7 @@ class _GameScreenState extends State<GameScreen> {
                     Expanded(
                       flex: 1,
                       child: Padding(
-                        padding: EdgeInsets.only(right: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: SizedBox(
                           height: 55,
                           child: GestureDetector(
@@ -144,16 +141,16 @@ class _GameScreenState extends State<GameScreen> {
                               showGeneralDialog(
                                 context: context,
                                 pageBuilder: (_, __, ___) {
-                                  return QuitGameDialog();
+                                  return const QuitGameDialog();
                                 },
                                 transitionBuilder: (_, anim, __, child) {
                                   Tween<Offset> tween;
                                   if (anim.status == AnimationStatus.reverse) {
                                     tween = Tween(
-                                        begin: Offset(0, -1), end: Offset.zero);
+                                        begin: const Offset(0, -1), end: Offset.zero);
                                   } else {
                                     tween = Tween(
-                                        begin: Offset(0, 1), end: Offset.zero);
+                                        begin: const Offset(0, 1), end: Offset.zero);
                                   }
 
                                   return SlideTransition(
@@ -197,7 +194,7 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              '${_timeLeft.toMinutesSeconds()}',
+                              _timeLeft.toMinutesSeconds(),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -226,13 +223,13 @@ class _GameScreenState extends State<GameScreen> {
                               children: [
                                 Text(
                                   _flips.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 22,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   'Flips',
                                   style: TextStyle(
                                     color: Colors.white,
@@ -262,7 +259,7 @@ class _GameScreenState extends State<GameScreen> {
       key: ValueKey(showBottom),
       padding: const EdgeInsets.all(1.0),
       child: Container(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
           color: Colors.grey.shade700,
           borderRadius: BorderRadius.circular(5),
@@ -294,14 +291,14 @@ class _GameScreenState extends State<GameScreen> {
       animation: rotateAnim,
       child: widget,
       builder: (context, widget) {
-        final isTop = widget!.key != ValueKey(false);
+        final isTop = widget!.key != const ValueKey(false);
         var tilt = ((animation.value - 0.5).abs() - 0.5) * 0.003;
         tilt *= isTop ? -1.0 : 1.0;
         final value = isTop ? min(rotateAnim.value, pi / 2) : rotateAnim.value;
         return Transform(
           transform: Matrix4.rotationY(value)..setEntry(3, 0, tilt),
-          child: widget,
           alignment: Alignment.center,
+          child: widget,
         );
       },
     );
@@ -336,7 +333,7 @@ class _GameScreenState extends State<GameScreen> {
                 }
                 return;
               } else {
-                Future.delayed(Duration(milliseconds: 400), () {
+                Future.delayed(const Duration(milliseconds: 400), () {
                   setState(() {
                     _selectedCards[index] = false;
                     _selectedCards[_heldCardIndex!] = false;
@@ -354,9 +351,9 @@ class _GameScreenState extends State<GameScreen> {
           layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
           transitionBuilder: _transitionBuilder,
           duration: const Duration(milliseconds: 250),
-          child: _buildCard(showBottomOfCard, index),
           switchInCurve: Curves.easeInBack,
           switchOutCurve: Curves.easeInBack.flipped,
+          child: _buildCard(showBottomOfCard, index),
         ),
       ),
     );
@@ -405,9 +402,9 @@ class _GameScreenState extends State<GameScreen> {
       transitionBuilder: (_, anim, __, child) {
         Tween<Offset> tween;
         if (anim.status == AnimationStatus.reverse) {
-          tween = Tween(begin: Offset(0, -1), end: Offset.zero);
+          tween = Tween(begin: const Offset(0, -1), end: Offset.zero);
         } else {
-          tween = Tween(begin: Offset(0, 1), end: Offset.zero);
+          tween = Tween(begin: const Offset(0, 1), end: Offset.zero);
         }
 
         return SlideTransition(

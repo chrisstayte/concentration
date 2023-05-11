@@ -3,7 +3,7 @@ import 'package:concentration/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef MapCallback(MapSize mapSize);
+typedef MapCallback = Function(MapSize mapSize);
 
 class MapCard extends StatelessWidget {
   MapCard(
@@ -31,7 +31,7 @@ class MapCard extends StatelessWidget {
           width: 100,
           height: 208,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(4.0),
             ),
             color: selected
@@ -58,7 +58,7 @@ class MapCard extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
         Visibility(
@@ -68,7 +68,7 @@ class MapCard extends StatelessWidget {
           visible: selected,
           child: Text(
             _title,
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
         ),
       ],

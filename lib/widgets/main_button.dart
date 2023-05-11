@@ -1,8 +1,7 @@
 import 'package:concentration/global/global.dart';
-import 'package:concentration/screens/new_game_screen.dart';
 import 'package:flutter/material.dart';
 
-typedef MainButtonCallback();
+typedef MainButtonCallback = Function();
 
 class MainButton extends StatelessWidget {
   const MainButton({Key? key, required this.onTap, required this.title})

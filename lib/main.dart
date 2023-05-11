@@ -67,41 +67,41 @@ class MyApp extends StatelessWidget {
           cardColor: Global.colors.lightIconColor,
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
-              primary: Global.colors.lightIconColorDarker,
+              foregroundColor: Global.colors.lightIconColorDarker,
             ),
           ),
           textTheme: TextTheme(
-            subtitle1: TextStyle(
+            titleMedium: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            subtitle2: TextStyle(
+            titleSmall: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline1: TextStyle(
+            displayLarge: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline2: TextStyle(
+            displayMedium: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline3: TextStyle(
+            displaySmall: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline4: TextStyle(
+            headlineMedium: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline5: TextStyle(
+            headlineSmall: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            headline6: TextStyle(
+            titleLarge: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            bodyText1: TextStyle(
+            bodyLarge: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            bodyText2: TextStyle(
+            bodyMedium: TextStyle(
               color: Global.colors.darkIconColor,
             ),
-            overline: TextStyle(
+            labelSmall: TextStyle(
               color: Global.colors.darkIconColor,
             ),
           ),
@@ -121,32 +121,29 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/':
               return PageTransition(
-                child: HomeScreen(),
+                child: const HomeScreen(),
                 type: PageTransitionType.bottomToTop,
               );
-              break;
             case '/newGame':
               return PageTransition(
-                child: NewGameScreen(),
+                child: const NewGameScreen(),
                 type: PageTransitionType.rightToLeftWithFade,
               );
-              break;
             case '/game':
               return PageTransition(
-                child: GameScreen(),
+                child: const GameScreen(),
                 type: PageTransitionType.rightToLeft,
               );
-              break;
             case '/stats':
               return PageTransition(
-                child: StatsScreen(),
+                child: const StatsScreen(),
                 childCurrent: this,
                 type: PageTransitionType.rightToLeft,
               );
               break;
             case '/credits':
               return PageTransition(
-                child: CreditsScreen(),
+                child: const CreditsScreen(),
                 type: PageTransitionType.rightToLeft,
               );
               break;

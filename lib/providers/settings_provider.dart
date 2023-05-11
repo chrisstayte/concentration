@@ -1,7 +1,6 @@
 import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/enums/gametheme.dart';
 import 'package:concentration/enums/mapsize.dart';
-import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

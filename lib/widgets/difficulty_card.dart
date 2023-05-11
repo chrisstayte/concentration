@@ -4,7 +4,7 @@ import 'package:concentration/utilities/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-typedef DifficultyCallback(Difficulty difficulty);
+typedef DifficultyCallback = Function(Difficulty difficulty);
 
 class DifficultyCard extends StatelessWidget {
   DifficultyCard(
@@ -18,10 +18,10 @@ class DifficultyCard extends StatelessWidget {
   final Difficulty difficulty;
   final DifficultyCallback difficultyCallback;
   late final _backgroundColor = difficulty == Difficulty.easy
-      ? Color(0XFF4C956c)
+      ? const Color(0XFF4C956c)
       : difficulty == Difficulty.intermediate
-          ? Color(0XFFFCBC5D)
-          : Color(0XFFC1121F);
+          ? const Color(0XFFFCBC5D)
+          : const Color(0XFFC1121F);
 
   late final _underTitle = difficulty == Difficulty.easy
       ? "Smooth Brain"
@@ -37,7 +37,7 @@ class DifficultyCard extends StatelessWidget {
           width: 112,
           height: 87,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(4.0),
             ),
             color: selected
@@ -50,7 +50,7 @@ class DifficultyCard extends StatelessWidget {
               height: 80,
               child: GestureDetector(
                 onTap: () {
-                  difficultyCallback(this.difficulty);
+                  difficultyCallback(difficulty);
                   HapticFeedback.mediumImpact();
                 },
                 child: Card(
@@ -62,7 +62,7 @@ class DifficultyCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             color: Colors.white,
                           ),
@@ -83,7 +83,7 @@ class DifficultyCard extends StatelessWidget {
                       ),
                       Text(
                         difficulty.name.capitalize(),
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       )
                     ],
                   ),
