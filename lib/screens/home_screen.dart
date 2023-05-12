@@ -1,5 +1,6 @@
 import 'package:concentration/global/global.dart';
 import 'package:concentration/widgets/main_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,16 +55,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  MainButton(
-                      title: 'Stats',
-                      onTap: () {
-                        HapticFeedback.mediumImpact();
-                        Navigator.pushNamed(
-                          context,
-                          '/stats',
-                        );
-                      }),
-                  const SizedBox(
+
+                  Visibility(
+                    visible: !kIsWeb,
+                    child: MainButton(
+                        title: 'Stats',
+                        onTap: () {
+                          HapticFeedback.mediumImpact();
+                          Navigator.pushNamed(
+                            context,
+                            '/stats',
+                          );
+                        }),
+                  ),
+                  SizedBox(
+
                     height: 20,
                   ),
                   MainButton(

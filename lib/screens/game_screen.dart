@@ -9,6 +9,7 @@ import 'package:concentration/providers/settings_provider.dart';
 import 'package:concentration/utilities/extensions.dart';
 import 'package:concentration/widgets/end_game_dialog.dart';
 import 'package:concentration/widgets/quit_game_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -392,7 +393,9 @@ class _GameScreenState extends State<GameScreen> {
         flips: flips,
         correct: correct);
 
-    context.read<GameStatsProvider>().addStat(stat);
+    if (!kIsWeb) {
+      context.read<GameStatsProvider>().addStat(stat);
+    }
 
     showGeneralDialog(
       context: context,
