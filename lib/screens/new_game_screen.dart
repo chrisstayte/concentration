@@ -3,13 +3,11 @@ import 'package:concentration/enums/gametheme.dart';
 import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/global/global.dart';
 import 'package:concentration/providers/settings_provider.dart';
-import 'package:concentration/screens/game_screen.dart';
 import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:concentration/widgets/main_button.dart';
 import 'package:concentration/widgets/map_card.dart';
 import 'package:concentration/widgets/theme_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class NewGameScreen extends StatefulWidget {
@@ -41,7 +39,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -84,7 +82,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -130,7 +128,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -162,14 +160,14 @@ class _NewGameScreenState extends State<NewGameScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: 77,
                       height: 77,
                       child: Card(
@@ -189,7 +187,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(

@@ -8,7 +8,7 @@ class QuitGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 250,
         height: 165,
         child: Stack(
@@ -17,7 +17,7 @@ class QuitGameDialog extends StatelessWidget {
               width: 250,
               height: 135,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(10),
                 ),
                 color: Global.colors.lightIconColor,
@@ -49,11 +49,11 @@ class QuitGameDialog extends StatelessWidget {
                   width: 75,
                   height: 50,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                       color: Global.colors.lightIconColorDarker),
-                  child: Center(
+                  child: const Center(
                     child: Material(
                       color: Colors.transparent,
                       child: Text(
@@ -78,11 +78,11 @@ class QuitGameDialog extends StatelessWidget {
                   width: 75,
                   height: 50,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                       color: Global.colors.lightIconColorDarker),
-                  child: Center(
+                  child: const Center(
                     child: Material(
                       color: Colors.transparent,
                       child: Text(

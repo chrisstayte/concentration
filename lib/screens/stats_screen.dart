@@ -14,14 +14,14 @@ class StatsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stats'),
+        title: const Text('Stats'),
         elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(0.0),
         child: Column(children: [
-          Row(
-            children: const [
+          const Row(
+            children: [
               Expanded(
                 flex: 1,
                 child: Center(
@@ -117,7 +117,7 @@ class StatsScreen extends StatelessWidget {
                                   : stat.mapSize == MapSize.fivexsix
                                       ? '5x6'
                                       : '6x8',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
@@ -129,7 +129,7 @@ class StatsScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               stat.gameDuration.toMinutesSeconds(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
@@ -141,7 +141,7 @@ class StatsScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               stat.flips.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),

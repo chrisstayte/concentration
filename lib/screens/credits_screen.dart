@@ -1,4 +1,3 @@
-import 'package:concentration/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -35,24 +34,24 @@ class _CreditsScreenState extends State<CreditsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Credits')),
+      appBar: AppBar(title: const Text('Credits')),
       body: ListView(
         children: [
-          ListTile(
+          const ListTile(
             title: Text('Developer'),
             trailing: Text('Chris Stayte'),
           ),
-          ListTile(
+          const ListTile(
             title: Text('Built With'),
             trailing: Text('Flutter'),
           ),
           ListTile(
-            title: Text('Version'),
+            title: const Text('Version'),
             trailing: Text('v${_packageInfo.version}'),
           ),
           ListTile(
-            title: Text('Email Me'),
-            trailing: Text('concentration@chrisstayte.com'),
+            title: const Text('Email Me'),
+            trailing: const Text('concentration@chrisstayte.com'),
             onTap: () async {
               final Uri params = Uri(
                 scheme: 'mailto',
@@ -68,8 +67,8 @@ class _CreditsScreenState extends State<CreditsScreen> {
             },
           ),
           ListTile(
-            title: Text('Repo'),
-            trailing: Text('github.com/ChrisStayte/Concentration'),
+            title: const Text('Repo'),
+            trailing: const Text('github.com/ChrisStayte/Concentration'),
             onTap: () async {
               final Uri params = Uri(
                   scheme: 'https',
@@ -83,7 +82,7 @@ class _CreditsScreenState extends State<CreditsScreen> {
           ),
           ListTile(
             title: const Text('View Licenses'),
-            trailing: Icon(Icons.description),
+            trailing: const Icon(Icons.description),
             onTap: () => showLicensePage(context: context),
           ),
         ],

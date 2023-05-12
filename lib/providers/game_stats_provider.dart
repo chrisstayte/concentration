@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:concentration/enums/difficulty.dart';
 import 'package:concentration/enums/mapsize.dart';
 import 'package:concentration/models/game_stat.dart';
-import 'package:concentration/widgets/difficulty_card.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 class GameStatsProvider extends ChangeNotifier {

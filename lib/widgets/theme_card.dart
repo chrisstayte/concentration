@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
-typedef GameThemeCallback(GameTheme gameTheme);
+typedef GameThemeCallback = Function(GameTheme gameTheme);
 
 class ThemeCard extends StatelessWidget {
   const ThemeCard(
@@ -27,7 +27,7 @@ class ThemeCard extends StatelessWidget {
           width: 113,
           height: 167,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(5.0),
             ),
             color: selected
@@ -60,7 +60,7 @@ class ThemeCard extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
         Visibility(
@@ -70,7 +70,7 @@ class ThemeCard extends StatelessWidget {
           visible: selected,
           child: Text(
             gameTheme.name.capitalize(),
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
         ),
       ],

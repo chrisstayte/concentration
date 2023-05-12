@@ -1,13 +1,8 @@
 import 'package:concentration/global/global.dart';
-import 'package:concentration/models/game_stat.dart';
-import 'package:concentration/providers/game_stats_provider.dart';
-import 'package:concentration/screens/new_game_screen.dart';
-import 'package:concentration/screens/stats_screen.dart';
 import 'package:concentration/widgets/main_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .headline3!
+                        .displaySmall!
                         .copyWith(color: Global.colors.darkIconColor),
                   ),
                   Text(
@@ -42,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(color: Global.colors.darkIconColor),
                   ),
                   const SizedBox(
@@ -57,9 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           '/newGame',
                         );
                       }),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
+
                   Visibility(
                     visible: !kIsWeb,
                     child: MainButton(
@@ -73,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }),
                   ),
                   SizedBox(
+
                     height: 20,
                   ),
                   MainButton(
@@ -84,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           '/credits',
                         );
                       }),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
