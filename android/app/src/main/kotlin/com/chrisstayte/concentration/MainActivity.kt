@@ -1,4 +1,4 @@
-package com.example.concentration
+package com.chrisstayte.concentration
 
 import io.flutter.embedding.android.FlutterActivity
 

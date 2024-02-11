@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: Global.colors.lightIconColor,
-
           appBarTheme: AppBarTheme(
             foregroundColor: Global.colors.darkIconColor,
             color: Global.colors.lightIconColor,
